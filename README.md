@@ -12,11 +12,11 @@ The recommended way is to right-click on the start menu and select (PowerShell A
 Launch Command:
 
 ```
-iwr -useb https://christitus.com/win | iex
+iwr -useb https://raw.githubusercontent.com/jstok84/winutil/main/winutil.ps1 | iex
 ```
 or by executing: 
 ```
-irm https://christitus.com/win | iex
+irm https://raw.githubusercontent.com/jstok84/winutil/main/winutil.ps1 | iex
 ```
 Courtesy of the issue raised at: [#144](/../../issues/144)
 
@@ -31,7 +31,7 @@ Source: <https://timesofindia.indiatimes.com/gadgets-news/github-content-domain-
 - If you are having TLS 1.2 issues, or are having trouble resolving `christitus.com/win` then run with the following command:
 
 ```
-[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12;iex(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/winutil.ps1')
+[Net.ServicePointManager]::SecurityProtocol=[Net.SecurityProtocolType]::Tls12;iex(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/jstok84/winutil/main/winutil.ps1')
 ```
 
 If you are still having issues try changing your DNS provider to 1.1.1.1 || 1.0.0.1 or 8.8.8.8 || 8.8.4.4
