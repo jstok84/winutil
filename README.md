@@ -26,12 +26,7 @@ Winutil must be run in Admin mode because it performs system-wide tweaks. To ach
 #### Stable Branch (Recommended)
 
 ```ps1
-iwr -useb https://raw.githubusercontent.com/jstok84/winutil/main/winutil.ps1 | iex
-```
-#### Dev Branch
-
-```ps1
-irm https://raw.githubusercontent.com/jstok84/winutil/main/winutil.ps1 | iex
+irm https://github.com/jstok84/winutil/releases/latest/download/winutil.ps1 | iex
 ```
 
 If you have Issues, refer to [Known Issues](https://christitustech.github.io/winutil/KnownIssues/)
