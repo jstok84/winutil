@@ -70,7 +70,6 @@ function Invoke-WPFUIElements {
             Order = $entryInfo.order
             Category = $entryInfo.Category
             Content = $entryInfo.Content
-            Choco = $entryInfo.choco
             Winget = $entryInfo.winget
             Panel = if ($entryInfo.Panel) { $entryInfo.Panel } else { "0" }
             Link = $entryInfo.link
