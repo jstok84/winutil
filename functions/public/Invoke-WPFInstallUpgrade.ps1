@@ -5,17 +5,6 @@ function Invoke-WPFInstallUpgrade {
         Invokes the function that upgrades all installed programs
 
     #>
-    if ($sync.WPFpreferChocolatey.IsChecked) {
-        Install-WinUtilChoco
-        $chocoUpgradeStatus = (Start-Process "choco" -ArgumentList "upgrade all -y" -Wait -PassThru -NoNewWindow).ExitCode
-        if ($chocoUpgradeStatus -eq 0) {
-            Write-Host "Upgrade Successful"
-        }
-        else{
-            Write-Host "Error Occured. Return Code: $chocoUpgradeStatus"
-        }
-    }
-    else{
         if((Test-WinUtilPackageManager -winget) -eq "not-installed") {
             return
         }
@@ -25,12 +14,10 @@ function Invoke-WPFInstallUpgrade {
             [System.Windows.MessageBox]::Show($msg, "Winutil", [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Warning)
             return
         }
-
         Update-WinUtilProgramWinget
 
         Write-Host "==========================================="
         Write-Host "--           Updates started            ---"
         Write-Host "-- You can close this window if desired ---"
         Write-Host "==========================================="
-    }
 }
