@@ -13,8 +13,7 @@ function Test-WinUtilPackageManager {
     #>
 
     Param(
-        [System.Management.Automation.SwitchParameter]$winget,
-        [System.Management.Automation.SwitchParameter]$choco
+        [System.Management.Automation.SwitchParameter]$winget
     )
 
     $status = "not-installed"
@@ -76,21 +75,5 @@ function Test-WinUtilPackageManager {
             $status = "not-installed"
         }
     }
-
-    if ($choco) {
-        if ((Get-Command -Name choco -ErrorAction Ignore) -and ($chocoVersion = (Get-Item "$env:ChocolateyInstall\choco.exe" -ErrorAction Ignore).VersionInfo.ProductVersion)) {
-            Write-Host "===========================================" -ForegroundColor Green
-            Write-Host "---      Chocolatey is installed        ---" -ForegroundColor Green
-            Write-Host "===========================================" -ForegroundColor Green
-            Write-Host "Version: v$chocoVersion" -ForegroundColor White
-            $status = "installed"
-        } else {
-            Write-Host "===========================================" -ForegroundColor Red
-            Write-Host "---    Chocolatey is not installed      ---" -ForegroundColor Red
-            Write-Host "===========================================" -ForegroundColor Red
-            $status = "not-installed"
-        }
-    }
-
     return $status
 }
