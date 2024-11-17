@@ -23,5 +23,5 @@ function Invoke-WPFGetInstalled {
         Write-Host "Done..."
         $sync.ProcessRunning = $false
         $sync.form.Dispatcher.Invoke([action] { Set-WinUtilTaskbaritem -state "None" })
-    }
+    
 }
