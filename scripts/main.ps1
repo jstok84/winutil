@@ -36,13 +36,6 @@ $sync.runspace.Open()
 
         WingetFailedInstall($Message) : base($Message) {}
     }
-
-    class ChocoFailedInstall : Exception {
-        [string]$additionalData
-
-        ChocoFailedInstall($Message) : base($Message) {}
-    }
-
     class GenericException : Exception {
         [string]$additionalData
 
@@ -121,14 +114,6 @@ Invoke-WPFUIElements -configVariable $sync.configs.feature -targetGridName "feat
 #===========================================================================
 
 $xaml.SelectNodes("//*[@Name]") | ForEach-Object {$sync["$("$($psitem.Name)")"] = $sync["Form"].FindName($psitem.Name)}
-
-#Persist the Chocolatey preference across winutil restarts
-$ChocoPreferencePath = "$env:LOCALAPPDATA\winutil\preferChocolatey.ini"
-$sync.WPFpreferChocolatey.Add_Checked({New-Item -Path $ChocoPreferencePath -Force })
-$sync.WPFpreferChocolatey.Add_Unchecked({Remove-Item $ChocoPreferencePath -Force})
-if (Test-Path $ChocoPreferencePath) {
-    $sync.WPFpreferChocolatey.IsChecked = $true
-}
 
 $sync.keys | ForEach-Object {
     if($sync.$psitem) {
@@ -448,10 +433,6 @@ $sync["SearchBar"].Add_TextChanged({
     $textToSearch = $sync.SearchBar.Text.ToLower()
 
     foreach ($CheckBox in $CheckBoxes) {
-        # Skip if the checkbox is null, it doesn't have content or it is the prefer Choco checkbox
-        if ($CheckBox -eq $null -or $CheckBox.Value -eq $null -or $CheckBox.Value.Content -eq $null -or $CheckBox.Name -eq "WPFpreferChocolatey") {
-            continue
-        }
 
         $checkBoxName = $CheckBox.Key
         $textBlockName = $checkBoxName + "Link"
